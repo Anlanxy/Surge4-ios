@@ -1,7 +1,7 @@
 #!name=知乎网页防跳转
 #!desc=iOS网页浏览
 #!system=ios
-#!raw:https://raw.githubusercontent.com/Anlanxy/Net-Music/master/myself.sgmodule
+#!raw:https://raw.githubusercontent.com/Anlanxy/Surge4-ios/main/zhihu.sgmodule
 
 [MITM]
 hostname =  %APPEND% www.zhihu.com, zhuanlan.zhihu.com
