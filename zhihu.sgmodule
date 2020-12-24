@@ -1,0 +1,23 @@
+#!name=京东领豆任务合集 (GitHub)
+#!desc=该模块收集并整理了当前所有关于 “京东” 可以获取京豆的脚本，脚本地址使用 GitHub 地址，该模块会快速更新。上次更新时间：2020-12-12 21:50
+#!raw:https://raw.githubusercontent.com/Anlanxy/Net-Music/master/myself.sgmodule
+
+[MITM]
+hostname =  %APPEND% www.zhihu.com, zhuanlan.zhihu.com
+
+[Header Rewrite]
+# 知乎（部分替换为手机百度 Quark 的 User-Agent）
+# 可以看楼层回复 1-2 条
+"^https:\/\/www\.zhihu\.com\/ " header-replace User-Agent "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1 Quark/604.1 T7/10.7 SearchCraft/2.7.7 (Baidu; P1 9.0.0)"
+
+[URL Rewrite]
+# 知乎网页去广告&推荐列表
+https://www\.zhihu\.com/api/v4/questions/\d+/related-readings _ reject
+https://www\.zhihu\.com/api/v4/answers/\d+/related-readings _ reject
+https://www\.zhihu\.com/api/v4/hot_recommendation _ reject
+https://www\.zhihu\.com/commercial_api/banners_v3/mobile_banner _ reject
+https://zhuanlan\.zhihu\.com/api/articles/\d+/recommendation _ reject
+
+[Script]
+知乎直接看  = type=http-response,pattern=https://www\.zhihu\.com/question/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/zhihu.js,script-update-interval=0
+知乎直接看  = type=http-response,pattern=https://zhuanlan\.zhihu\.com/p/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/zhihu.js,script-update-interval=0
