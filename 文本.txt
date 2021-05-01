@@ -1,1 +1,37 @@
-https://subcon.dlj.tf/sub?target=surge&ver=4&url=https%3A%2F%2Fsakuracat.cloud%2Flink%2FbTFIyDKpjo4pqDT1%3Fclash%3D1&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online_Mini_Fallback.ini&emoji=true&list=false&udp=false&tfo=false&scv=false&fdn=false&sort=false
+#!MANAGED-CONFIG https://subcon.dlj.tf/sub?target=surge&ver=4&url=https%3A%2F%2Fsakuracat.cloud%2Flink%2FbTFIyDKpjo4pqDT1%3Fclash%3D1&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online_Mini_Fallback.ini&emoji=true&list=false&udp=false&tfo=false&scv=false&fdn=false&sort=false interval=86400 strict=false
+
+[General]
+loglevel = notify
+bypass-system = true
+skip-proxy = 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,100.64.0.0/10,localhost,*.local,e.crashlytics.com,captive.apple.com,::ffff:0:0:0:0/1,::ffff:128:0:0:0/1
+#DNS设置或根据自己网络情况进行相应设置
+bypass-tun = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12
+dns-server = 119.29.29.29,223.5.5.5
+
+[Proxy]
+DIRECT = direct
+🇸🇬 新加坡 03-AGA-1.0x = vmess, aga-sg1.sakuracat.cloud, 443, username=dba7d6ba-6b0d-364e-a622-92d53c6071e1, tls=true, ws=true, ws-path=/api, sni=aga-sg1.sakuracat.cloud, ws-headers=Host:aga-sg1.sakuracat.cloud, skip-cert-verify=0, tfo=false, udp-relay=false
+🇯🇵 日本 01-Standard-0.7x = vmess, us1-jp.nyaaa.cyou, 443, username=dba7d6ba-6b0d-364e-a622-92d53c6071e1, tls=true, ws=true, ws-path=/api, sni=us1-jp.nyaaa.cyou, ws-headers=Host:us1-jp.nyaaa.cyou, skip-cert-verify=0, tfo=false, udp-relay=false
+🇺🇲 美国 01-NF-Direct-1.0x = vmess, origin-us1.nyaaa.cyou, 443, username=dba7d6ba-6b0d-364e-a622-92d53c6071e1, tls=true, ws=true, ws-path=/api, sni=origin-us1.nyaaa.cyou, ws-headers=Host:origin-us1.nyaaa.cyou, skip-cert-verify=0, tfo=false, udp-relay=false
+
+[Proxy Group]
+🚀 节点选择 = select,♻️ 自动选择,🔯 故障转移,DIRECT,🇸🇬 新加坡 03-AGA-1.0x,🇯🇵 日本 01-Standard-0.7x,🇺🇲 美国 01-NF-Direct-1.0x
+♻️ 自动选择 = url-test,🇸🇬 新加坡 03-AGA-1.0x,🇯🇵 日本 01-Standard-0.7x,🇺🇲 美国 01-NF-Direct-1.0x,url=http://www.gstatic.com/generate_204,interval=300,tolerance=50
+🔯 故障转移 = fallback,🇸🇬 新加坡 03-AGA-1.0x,🇯🇵 日本 01-Standard-0.7x,🇺🇲 美国 01-NF-Direct-1.0x,url=http://www.gstatic.com/generate_204,interval=180
+🎯 全球直连 = select,DIRECT,🚀 节点选择,♻️ 自动选择
+🛑 全球拦截 = select,REJECT,DIRECT
+🐟 漏网之鱼 = select,🚀 节点选择,🎯 全球直连,♻️ 自动选择,🔯 故障转移,🇸🇬 新加坡 03-AGA-1.0x,🇯🇵 日本 01-Standard-0.7x,🇺🇲 美国 01-NF-Direct-1.0x
+
+[Rule]
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list,🎯 全球直连
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list,🎯 全球直连
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list,🛑 全球拦截
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list,🛑 全球拦截
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list,🎯 全球直连
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list,🚀 节点选择
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list,🚀 节点选择
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyLite.list,🚀 节点选择
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list,🎯 全球直连
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list,🎯 全球直连
+GEOIP,CN,🎯 全球直连
+FINAL,🐟 漏网之鱼
